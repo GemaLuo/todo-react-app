@@ -60,15 +60,17 @@ function List() {
             id="standard-basic"
             label="Write a todo"
             value={todoInput}
-            color="secondary"
-            style={{width: "90vw", maxWidth: "500px", height: "50px"}} 
+            margin="dense"
+            size="medium"
+            variant="filled"
+            style={{width: "90vw", maxWidth: "500px"}} 
             onChange={(e) => setTodoInput(e.target.value)}
           />
           <Button 
             type="submit" 
-            variant="outlined" 
+            variant="contained" 
             onClick={addTodo}
-            style={{justifyContent: "center"}}
+            style={{height: "50px", textAlign:"center", fontSize: "25px", justifyContent: "center", marginTop: "11px"}}
           >
             Add
           </Button>
@@ -83,8 +85,8 @@ function List() {
           />
         ))}
         </div>
+        <Link to="/" className="btn">home</Link>
       </div>
-      <Link to="/" className="btn-home">home</Link>
     </div>
   )
 }
