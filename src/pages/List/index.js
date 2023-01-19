@@ -12,21 +12,26 @@ import "firebase/compat/firestore";
 function List() {
   const [todos, setTodos] = useState([]);
   const [todoInput, setTodoInput]=useState("");
-  
+
+  let unsubscribe;
+
   useEffect(() => {
     getTodos();
-  }, []) //blank to run only on first launch
+    return unsubscribe
+  }, []); //blank to run only on first launch
   
   function getTodos(){
-    db.collection("todos").onSnapshot(function (querySnapshot) {
-      setTodos(
-        querySnapshot.docs.map((doc) => ({
-          id: doc.id,
-          todo: doc.data().todo,
-          inprogress: doc.data().inprogress
-        }))
-      );
-    })
+    unsubscribe=db.collection("todos")
+    //onSnapshot: 使用者間有即時互動需求時使用
+      .onSnapshot(function (querySnapshot) {
+        setTodos(
+          querySnapshot.docs.map((doc) => ({
+            id: doc.id,
+            todo: doc.data().todo,
+            inprogress: doc.data().inprogress
+          }))
+        );
+      })
   }
 
   function addTodo(e){
