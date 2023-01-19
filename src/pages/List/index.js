@@ -17,6 +17,7 @@ function List() {
 
   useEffect(() => {
     getTodos();
+    //stop listening to firebase firestore collection changes 
     return unsubscribe
   }, []); //blank to run only on first launch
   
